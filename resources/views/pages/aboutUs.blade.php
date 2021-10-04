@@ -1,8 +1,8 @@
-@extends('index')
+@extends('layouts/app', ['title' => 'A propos de nous'])
 
-@section('title')
+{{-- @section('title')
 &Agrave; propos de nous | Alsa-Sport
-@endsection
+@endsection --}}
 
 @section('content')
     <h1>&Agrave; propos de nous</h1>
