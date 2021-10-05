@@ -14,13 +14,14 @@ class CreateAvisClientsTable extends Migration
     public function up()
     {
         Schema::create('avis_clients', function (Blueprint $table) {
-            $table->id('avisClients_id');
+            $table->bigIncrements('avisClient_id');
             $table->string('email',255);
             $table->string('pseudo',255);
             $table->integer('note',false,false);
             $table->longText('comment');
             $table->mediumText('picture');
-            $table->date('date');
+            $table->timestamps();
+           
         });
     }
 

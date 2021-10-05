@@ -22,13 +22,19 @@ class AvisClientFactory extends Factory
     public function definition()
     {
         return [
-            'email' => $this->faker->name(),
-            'pseudo' => $this->faker->unique()->safeEmail(),
-            'note' => $this->faker->randomDigitNot(5),
-            'comment' => $this->faker->text($maxNbChars = 200),
-            'picture' => $this->faker->imageUrl($width = 640, $height = 480),
-            'date' => $this->dateTime($max = 'now', $timezone = null), // DateTime('2008-04-25 08:37:17', 'UTC')
-
+            'email' => $this->faker->unique()->email(),
+            'pseudo' => $this->faker->name(),
+            'note' => $this->faker->numberBetween(0, 5),
+            'comment' => $this->faker->text(),
+            'picture' => $this->faker->imageUrl(640, 480, 'animals', true),
+            'created_at' => $this->faker->unixTime(),
+            'updated_at' => $this->faker->unixTime(),
         ];
+    }
+    public function run()
+    {
+        AvisClient::factory()
+            ->count(10)
+            ->create();
     }
 }
