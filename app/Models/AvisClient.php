@@ -18,11 +18,11 @@ class AvisClient extends Model
      */
     protected $primaryKey = 'avisClient_id';
 
-    // /**
-    //  * Get the AvisClient for the blog post.
-    //  */
-    // public function produit()
-    // {
-    //     return $this->hasOne(AvisClient::class);
-    // }
+    /**
+     * Get the appartient that owns the phone.
+     */
+    public function appartient()
+    {
+        return $this->belongsTo(Appartient::class);
+    }
 }

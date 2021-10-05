@@ -14,11 +14,15 @@ class Produit extends Model
     * @var string
     */
    protected $primaryKey = 'produit_id';
-    // /**
-    //  * Get the AvisClient for the blog post.
-    //  */
-    // public function avisClient()
-    // {
-    //     return $this->hasMany(AvisClient::class);
-    // }
+    /**
+     * Get the appartient that owns the phone.
+     */
+    public function appartient()
+    {
+        return $this->belongsTo(Appartient::class);
+    }
+    public function allInfos()
+    {
+        
+    }
 }

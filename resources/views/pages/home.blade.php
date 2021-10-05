@@ -6,25 +6,24 @@
             <h1>Alsa-Sport</h1>
         </div>
         <h2>Produits sport</h2>
-        <article id="listeProduits">
-            <article class="produits">
-                <div class="cadreImg">
-                <a href="#"><img class="poster" src="{{ asset('images/corde.png') }}" alt="corde à sauter" /></a>
-                </div>
-                <a href="#">
-                    <h3>Corde à sauter</h3>
-                    <p class="price">10€</p>
-                </a>
+        @if ($produits->count() > 0)
+            <article id="listeProduits">
+                @foreach ($produits as $produit)
+                    <article class="produits">
+                        <div class="cadreImg">
+                            <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $produit->picture }}"
+                                    alt="{{ $produit->name }}" /></a>
+                        </div>
+                        <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}">
+                            <br>
+                            <h3>{{ $produit->name }}</h3>
+                            <p class="price">{{ $produit->price }},00€</p>
+                        </a>
+                    </article>
+                @endforeach
             </article>
-            <article class="produits">
-                <div class="cadreImg">
-                <a href="#"><img class="poster" src="{{ asset('images/elastic.png') }}" alt="élastique" /></a>
-                </div>
-                <a href="#">
-                    <h3>&Eacute;lastique</h3>
-                    <p class="price">8€</p>
-                </a>
-            </article>
-        </article>
+        @else
+            <p>Pas d'article...</p>
+        @endif
     </div>
 @endsection

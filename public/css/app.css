@@ -5,13 +5,13 @@ body{
   text-align: center;
   background: url("https://c.pxhere.com/images/8c/78/40e243d8510805a3abc997d0e3b7-1433401.jpg!d");
   background-repeat: no-repeat;
-  background-position: center;
   background-size: 100%;
   
 }
 .container_title{
 
-    width: 200px;
+    width: fit-content;
+    padding: 10px;
     height: 50px;
     background-color: #0957ffbb;
     margin: 0 auto;
