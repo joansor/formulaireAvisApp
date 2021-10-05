@@ -18,6 +18,7 @@ class CreateProduitsTable extends Migration
             $table->string('name',255);
             $table->float('price',8,2,false);
             $table->mediumText('picture');
+            $table->longText('description');
         });
     }
 

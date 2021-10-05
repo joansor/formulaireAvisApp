@@ -28,6 +28,9 @@ h2{
 h3:hover{
     text-decoration:underline;
 }
+h4{
+    color: black;
+}
 #container_home{
   text-align: center;
 }
@@ -58,4 +61,36 @@ h3:hover{
 }
 .price:hover{
     text-decoration: underline;
+}
+.container_produit{
+    grid-column: 1/12;
+    display: grid;
+    background-color: white;
+}
+.row{
+    display: grid;
+    flex-direction: row;
+    grid-column: 1/12;
+}
+.poster{
+    grid-column: 1/4;
+    margin: 10px auto;
+}
+.description{
+    grid-column: 7/12;
+    margin: 10px auto;
+}
+.containerline{
+    margin: 8px auto;
+    grid-column: 5/6;
+}
+.line_vertical{
+    width: 1px;
+    height: 300px;
+    background-color: #44454650;
+    margin: 0;
+}
+.details{
+    text-align: justify;
+    width: 600px;
 }

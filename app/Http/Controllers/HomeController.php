@@ -20,8 +20,12 @@ class HomeController extends Controller
     {
         return view('pages/aboutUs');
     }
-    public function produitShow()
+    public function produitShow($id)
     {
-        
+        $produit = Produit::find($id);
+    
+        return view('pages/produitShow',[
+            'produit' => $produit
+        ]);
     }
 }

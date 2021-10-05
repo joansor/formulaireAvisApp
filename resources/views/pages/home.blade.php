@@ -11,8 +11,7 @@
                 @foreach ($produits as $produit)
                     <article class="produits">
                         <div class="cadreImg">
-                            <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $produit->picture }}"
-                                    alt="{{ $produit->name }}" /></a>
+                            <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $produit->picture }}" alt="{{ $produit->name }}" /></a>
                         </div>
                         <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}">
                             <br>
