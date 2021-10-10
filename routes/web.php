@@ -26,4 +26,7 @@ Route::get('/', [HomeController::class,'home'])->name('home');
 Route::get('/about-us', [HomeController::class,'aboutUs'])->name('aboutUs');
 Route::get('/produit/{id}',[HomeController::class,'produitShow'])->name('produits.show');
 
-
+// Route::post('comments', '\Laravelista\Comments\CommentController@store');
+// Route::delete('comments/{comment}', '\Laravelista\Comments\CommentController@destroy');
+//Route::put('comments/{comment}', '\Laravelista\Comments\CommentController@update');
+// Route::post('comments/{comment}', '\Laravelista\Comments\CommentController@reply');

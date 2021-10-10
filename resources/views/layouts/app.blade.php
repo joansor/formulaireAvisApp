@@ -7,7 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {{-- <title>@yield('title', config('app.name'))</title> --}}
     <link rel="icon" type="image/png" sizes="32x32" href={{ asset('images/sportIcon.png') }} />
     <title>{{ isset($title) ? '' . $title . ' | ' . config('app.name') : config('app.name') }}</title>
@@ -19,5 +21,4 @@
     </main>
     @include('layouts/partials/_footer')
 </body>
-
 </html>
