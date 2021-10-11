@@ -11,6 +11,85 @@ $markdown->setSafeMode(true);
     <div class="media-body">
         <h5 class="mt-0 mb-1">{{ $comment->commenter->name ?? $comment->guest_name }} <small
                 class="text-muted">- {{ $comment->created_at->diffForHumans() }}</small></h5>
+            <div>
+                <div class="rating">
+                    <div class="star-icon">
+                @switch($comment->product_rating)
+                @case(1)
+                <input type="radio" value="1" checked id="ratingStar1">
+                <label for="ratingStar1" class="fa fa-star"></label>
+                <input type="radio" value="2" id="ratingStar2">
+                <label for="ratingStar2" class="fa fa-star"></label>
+                <input type="radio" value="3"  id="ratingStar3">
+                <label for="ratingStar3" class="fa fa-star"></label>
+                <input type="radio" value="4"  id="ratingStar4">
+                <label for="ratingStar4" class="fa fa-star"></label>
+                <input type="radio" value="5"  id="ratingStar5">
+                <label for="ratingStar5" class="fa fa-star"></label>
+                    @break
+                @case(2)
+                <input type="radio" value="1" id="ratingStar1">
+                <label for="ratingStar1" class="fa fa-star"></label>
+                <input type="radio" value="2" checked id="ratingStar2">
+                <label for="ratingStar2" class="fa fa-star"></label>
+                <input type="radio" value="3" id="ratingStar3">
+                <label for="ratingStar3" class="fa fa-star"></label>
+                <input type="radio" value="4" id="ratingStar4">
+                <label for="ratingStar4" class="fa fa-star"></label>
+                <input type="radio" value="5" id="ratingStar5">
+                <label for="ratingStar5" class="fa fa-star"></label>
+                    @break
+                @case(3)
+                <input type="radio" value="1" id="ratingStar1">
+                <label for="ratingStar1" class="fa fa-star"></label>
+                <input type="radio" value="2" id="ratingStar2">
+                <label for="ratingStar2" class="fa fa-star"></label>
+                <input type="radio" value="3" checked id="ratingStar3">
+                <label for="ratingStar3" class="fa fa-star"></label>
+                <input type="radio" value="4" id="ratingStar4">
+                <label for="ratingStar4" class="fa fa-star"></label>
+                <input type="radio" value="5" id="ratingStar5">
+                <label for="ratingStar5" class="fa fa-star"></label>
+                    @break
+                @case(4)
+                <input type="radio" value="1" id="ratingStar1">
+                <label for="ratingStar1" class="fa fa-star"></label>
+                <input type="radio" value="2" id="ratingStar2">
+                <label for="ratingStar2" class="fa fa-star"></label>
+                <input type="radio" value="3" id="ratingStar3">
+                <label for="ratingStar3" class="fa fa-star"></label>
+                <input type="radio" value="4" checked id="ratingStar4">
+                <label for="ratingStar4" class="fa fa-star"></label>
+                <input type="radio" value="5" id="ratingStar5">
+                <label for="ratingStar5" class="fa fa-star"></label>
+                    @break
+                @case(5)
+                <input type="radio" value="1" id="ratingStar1">
+                <label for="ratingStar1" class="fa fa-star"></label>
+                <input type="radio" value="2" id="ratingStar2">
+                <label for="ratingStar2" class="fa fa-star"></label>
+                <input type="radio" value="3" id="ratingStar3">
+                <label for="ratingStar3" class="fa fa-star"></label>
+                <input type="radio" value="4" id="ratingStar4">
+                <label for="ratingStar4" class="fa fa-star"></label>
+                <input type="radio" value="5" checked id="ratingStar5">
+                <label for="ratingStar5" class="fa fa-star"></label>
+                    @break
+                @default
+                <input type="radio" value="1" id="ratingStar1">
+                <label for="ratingStar1" class="fa fa-star"></label>
+                <input type="radio" value="2" id="ratingStar2">
+                <label for="ratingStar2" class="fa fa-star"></label>
+                <input type="radio" value="3" checked id="ratingStar3">
+                <label for="ratingStar3" class="fa fa-star"></label>
+                <input type="radio" value="4" id="ratingStar4">
+                <label for="ratingStar4" class="fa fa-star"></label>
+                <input type="radio" value="5" id="ratingStar5">
+                <label for="ratingStar5" class="fa fa-star"></label>
+            @endswitch
+                    </div>
+                </div>
+            </div>
         <div style="white-space: pre-wrap;">{!! $markdown->line($comment->comment) !!}
             @if ($comment->guest_file !== null)
             {{-- <p>{{ $comment->guest_file }}</p> --}}

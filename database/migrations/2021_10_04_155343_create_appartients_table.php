@@ -15,10 +15,10 @@ class CreateAppartientsTable extends Migration
     {
         Schema::create('appartients', function (Blueprint $table) {
             $table->bigIncrements('appartient_id');
-            $table->unsignedBigInteger('produit_id');
-            $table->unsignedBigInteger('avisClient_id');
-            $table->foreign('produit_id')->references('produit_id')->on('produits');
-            $table->foreign('avisClient_id')->references('avisClient_id')->on('avis_clients');
+            // $table->unsignedBigInteger('produit_id');
+            // $table->unsignedBigInteger('avisClient_id');
+            //$table->foreign('produit_id')->references('produit_id')->on('produits');
+            // $table->foreign('avisClient_id')->references('avisClient_id')->on('avis_clients');
         });
     }
 

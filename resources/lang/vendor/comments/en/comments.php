@@ -24,5 +24,7 @@ return [
     'entrer_votre_pseudo' => 'Entrer votre pseudo:',
     'entrer_votre_email' => 'Entrer votre email:',
     'ajouter_une_image' => 'Ajouter une image:',
+    'avis_client' => 'Avis client :',
+    'note' => 'Note :',
 
 ];

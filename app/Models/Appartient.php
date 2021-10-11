@@ -16,12 +16,12 @@ class Appartient extends Model
      */
     protected $primaryKey = 'appartient_id';
 
-    public function Produits()
-    {
-        return $this->hasMany(Produit::class);
-    }
-    public function AvisClients()
-    {
-        return $this->hasMany(AvisClient::class);
-    }
+    // public function Produits()
+    // {
+    //     return $this->hasMany(Produit::class);
+    // }
+    // public function AvisClients()
+    // {
+    //     return $this->hasMany(AvisClient::class);
+    // }
 }

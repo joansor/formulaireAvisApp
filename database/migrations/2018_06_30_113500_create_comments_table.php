@@ -39,6 +39,7 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             
             $table->binary('guest_file')->nullable();
+            $table->integer('product_rating');
            
         });
     }

@@ -20,12 +20,9 @@ class Produit extends Model
     /**
      * Get the appartient that owns the phone.
      */
-    public function appartient()
-    {
-        return $this->belongsTo(Appartient::class);
-    }
-    public function allInfos()
-    {
-        
-    }
+    // public function appartient()
+    // {
+    //     return $this->belongsTo(Appartient::class);
+    // }
+   
 }

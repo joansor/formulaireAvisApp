@@ -24,7 +24,7 @@ if (isset($approved) and $approved == true) {
 
 <div>
     <br>
-    <h5>Avis client :</h5>
+    <h5>@lang('comments::comments.avis_client')</h5>
     <br>
 
     @if ($comments->count() < 1)

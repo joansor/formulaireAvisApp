@@ -41,6 +41,23 @@
                 <label for="file">@lang('comments::comments.ajouter_une_image')</label>
                 <input type="file" name="guest_file" id="guest_file" accept="image/png, image/jpeg">
             </div>
+            <h5>@lang('comments::comments.note')</h5>
+            <div class="form-group">
+                <div class="rating-css">
+                    <div class="star-icon">
+                        <input type="radio" value="1" name="product_rating" id="rating1">
+                        <label for="rating1" class="fa fa-star"></label>
+                        <input type="radio" value="2" name="product_rating" id="rating2">
+                        <label for="rating2" class="fa fa-star"></label>
+                        <input type="radio" value="3" name="product_rating" checked id="rating3">
+                        <label for="rating3" class="fa fa-star"></label>
+                        <input type="radio" value="4" name="product_rating" id="rating4">
+                        <label for="rating4" class="fa fa-star"></label>
+                        <input type="radio" value="5" name="product_rating" id="rating5">
+                        <label for="rating5" class="fa fa-star"></label>
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="message">@lang('comments::comments.entrer_votre_commentaire')</label>
                 <textarea class="form-control @if ($errors->has('message')) is-invalid @endif" name="message" rows="3"></textarea>
