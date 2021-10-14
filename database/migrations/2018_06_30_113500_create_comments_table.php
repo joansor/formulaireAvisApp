@@ -22,7 +22,6 @@ class CreateCommentsTable extends Migration
 
             $table->string('guest_name')->nullable();
             $table->string('guest_email')->nullable();
-           
 
             $table->string("commentable_type");
             $table->string("commentable_id");
@@ -37,10 +36,11 @@ class CreateCommentsTable extends Migration
 
 			$table->softDeletes();
             $table->timestamps();
-            
+
             $table->binary('guest_file')->nullable();
             $table->integer('product_rating');
-           
+
+
         });
     }
 

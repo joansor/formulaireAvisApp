@@ -7,17 +7,17 @@
         </div>
         <br>
         <h2>Produits sport</h2>
-        @if ($produits->count() > 0)
+        @if ($products->count() > 0)
             <article id="listeProduits">
-                @foreach ($produits as $produit)
+                @foreach ($products as $product)
                     <article class="produits">
                         <div class="cadreImg">
-                            <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $produit->picture }}" alt="{{ $produit->name }}" /></a>
+                            <a href="{{ route('product.show', ['id' => $product->product_id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $product->picture }}" alt="{{ $product->name }}" /></a>
                         </div>
-                        <a href="{{ route('produits.show', ['id' => $produit->produit_id ]) }}">
+                        <a href="{{ route('product.show', ['id' => $product->product_id ]) }}">
                             <br>
-                            <h3>{{ $produit->name }}</h3>
-                            <p class="price">{{ $produit->price }},00€</p>
+                            <h3>{{ $product->name }}</h3>
+                            <p class="price">{{ $product->price }},00€</p>
                         </a>
                     </article>
                 @endforeach

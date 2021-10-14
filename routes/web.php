@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CKEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::name('home')->get('/', function () {
-//     return view('pages/home');
+// Route::get('/', function () {
+//     return view('welcome');
 // });
-
-Route::get('/about-us', function () {
-    return view('pages/aboutUs');
-})->name('aboutUs');
-
 Route::get('/', [HomeController::class,'home'])->name('home');
-Route::get('/about-us', [HomeController::class,'aboutUs'])->name('aboutUs');
-Route::get('/produit/{id}',[HomeController::class,'produitShow'])->name('produits.show');
+Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about-us');
+Route::get('/product/{id}',[ProductController::class, 'productShow'])->name('product.show');
+Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
-// Route::post('comments', '\Laravelista\Comments\CommentController@store');
-// Route::delete('comments/{comment}', '\Laravelista\Comments\CommentController@destroy');
-//Route::put('comments/{comment}', '\Laravelista\Comments\CommentController@update');
-// Route::post('comments/{comment}', '\Laravelista\Comments\CommentController@reply');
+Route::post('comments', Config::get('comments.controller') . '@store')->name('comments.store');
+Route::delete('comments/{comment}', Config::get('comments.controller') . '@destroy')->name('comments.destroy');
+Route::put('comments/{comment}', Config::get('comments.controller') . '@update')->name('comments.update');
+Route::post('comments/{comment}', Config::get('comments.controller') . '@reply')->name('comments.reply');

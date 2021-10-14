@@ -6,6 +6,8 @@ if (isset($approved) and $approved == true) {
 }
 @endphp
 
+
+
 @auth
     @include('comments::_form')
 @elseif(Config::get('comments.guest_commenting') == true)
@@ -22,11 +24,11 @@ if (isset($approved) and $approved == true) {
     </div>
 @endauth
 
+
 <div>
     <br>
     <h5>@lang('comments::comments.avis_client')</h5>
     <br>
-
     @if ($comments->count() < 1)
         <div class="alert alert-warning">@lang('comments::comments.there_are_no_comments')</div>
     @endif
