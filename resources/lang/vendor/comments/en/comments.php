@@ -20,9 +20,11 @@ return [
     'enter_your_message_here' => 'Enter your message here:',
     'enter_your_email_here' => 'Enter your email here:',
     'enter_your_name_here' => 'Enter your name here:',
-    'entrer_votre_commentaire' => 'Entrer votre commentaire:',
-    'entrer_votre_pseudo' => 'Entrer votre pseudo:',
-    'entrer_votre_email' => 'Entrer votre email:',
-    'ajouter_une_image' => 'Ajouter une image:',
-
+    'valider' => 'Valider',
+    'votre_email' => 'Email :',
+    'nom' => 'Nom :',
+    'pseudo' => 'Pseudo :',
+    'ajouter_image' => "Ajouter une image :",
+    'avis_client' => 'Avis client :',
+    'note' => 'Note :',
 ];

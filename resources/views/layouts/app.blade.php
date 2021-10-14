@@ -7,18 +7,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/aca4a9d5a5.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" type="text/css" href="trix.css">
+    <script type="text/javascript" src="trix.js"></script> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {{-- <title>@yield('title', config('app.name'))</title> --}}
     <link rel="icon" type="image/png" sizes="32x32" href={{ asset('images/sportIcon.png') }} />
     <title>{{ isset($title) ? '' . $title . ' | ' . config('app.name') : config('app.name') }}</title>
+    
 </head>
 
 <body>
-    <main role="main">
-        @yield('content')
-    </main>
-    @include('layouts/partials/_footer')
+    <div class="container-fluid">
+        <main role="main">
+            <div class="container col-12 col-sm-12 col-md-12 col-lg-12">
+                @yield('content')
+            </div>
+        </main>
+        @include('layouts/partials/_footer')
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+
+    </script>
 </body>
 </html>

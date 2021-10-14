@@ -2,30 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produit;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
     public function home()
     {
-        $produits = Produit::all();
-        // dd($home);
+        $products = Product::all();
+        //dd($products);
         return view('pages/home',[
-            'produits' => $produits
+            'products' => $products
         ]);
     }
     public function aboutUs()
     {
         return view('pages/aboutUs');
     }
-    public function produitShow($id)
-    {
-        $produit = Produit::find($id);
-    
-        return view('pages/produitShow',[
-            'produit' => $produit
-        ]);
-    }
+   
 }
