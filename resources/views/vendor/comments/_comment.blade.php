@@ -87,13 +87,11 @@
                 </div>
             </div>
         </div>
-        <div class="viewMsg">
+        <div class="viewComment container col-12 col-sm-12 col-md-12 col-lg-12">
             {!! $comment->comment !!}
             {{-- @livewire('trix',[$comment->comment]) --}}
         </div>
-
         {{-- <div style="white-space: pre-wrap;">{!! $markdown->line($comment->comment) !!}</div> --}}
-
         <div>
             @can('reply-to-comment', $comment)
                 <button data-toggle="modal" data-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.reply')</button>

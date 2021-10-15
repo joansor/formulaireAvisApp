@@ -34,17 +34,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-         // //dd($request->message);
-        $fileImg = null;
-        // If guest_file exist create encode image
-        if ($request->guest_file) {
-            $filetype = $request->file('guest_file')->getClientMimeType();
-            $file = $request->file('guest_file')->getPathname();
-            $fileImg = $this->base64_encode_image($file, $filetype);
-            dd($fileImg);
-        }
-
+        
+       //dd($request);
+      
         // If guest commenting is turned off, authorize this action.
         if (Config::get('comments.guest_commenting') == false) {
             Gate::authorize('create-comment', Comment::class);
@@ -74,11 +66,6 @@ class CommentController extends Controller
         if (!Auth::check()) {
             $comment->guest_name = $request->guest_name;
             $comment->guest_email = $request->guest_email;
-             // if ($fileImg) {
-            //     $comment->guest_file = $fileImg;
-            // } else {
-            //     $comment->guest_file = null;
-            // }
             $comment->product_rating = $request->product_rating;
         } else {
             $comment->commenter()->associate(Auth::user());
@@ -91,18 +78,7 @@ class CommentController extends Controller
 
         return Redirect::to(URL::previous() . '#comment-' . $comment->getKey());
     }
-     /**
-      * Encode file img.
-      */
-    public function base64_encode_image($filename, $filetype)
-    {
-        
-        if ($filename) {
-            $imgbinary = fread(fopen($filename, "r"), filesize($filename)); // open & read file
-            return 'data:' . $filetype . ';base64,' . base64_encode($imgbinary); // path binary complet
-        }
-    }
-
+   
     /**
      * Updates the message of the comment.
      */
@@ -160,5 +136,16 @@ class CommentController extends Controller
 
         return Redirect::to(URL::previous() . '#comment-' . $reply->getKey());
     }
+      /**
+      * Encode file img.
+      */
+      public static function base64_encode_image($filename, $filetype)
+      {
+          
+          if ($filename) {
+              $imgbinary = fread(fopen($filename, "r"), filesize($filename)); // open & read file
+              return 'data:' . $filetype . ';base64,' . base64_encode($imgbinary); // path binary complet
+          }
+      }  
 }
 

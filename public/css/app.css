@@ -152,3 +152,8 @@ h4 {
   }
 
 /* End of Star Rating */
+
+figure > a > img {
+    width: 150px;
+    height: 150px;
+}
