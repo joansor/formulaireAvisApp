@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CKEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +20,18 @@ use App\Http\Controllers\CKEditorController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [HomeController::class,'home'])->name('home');
+Route::any('/', [HomeController::class,'home'])->name('home');
+
 Route::get('/about-us', [HomeController::class,'aboutUs'])->name('about-us');
 Route::get('/product/{id}',[ProductController::class, 'productShow'])->name('product.show');
-Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
 Route::post('comments', Config::get('comments.controller') . '@store')->name('comments.store');
+Route::post('comments/{comment}', Config::get('comments.controller') . '@reply')->name('comments.reply');
 Route::delete('comments/{comment}', Config::get('comments.controller') . '@destroy')->name('comments.destroy');
 Route::put('comments/{comment}', Config::get('comments.controller') . '@update')->name('comments.update');
-Route::post('comments/{comment}', Config::get('comments.controller') . '@reply')->name('comments.reply');
+
+
+
+Route::get('product/{id}/sort/{sort}',['middleware' => 'auth', CommentController::class,'processingSort'])->name('comments.processingSort');
+
+

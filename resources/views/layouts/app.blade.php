@@ -4,19 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/aca4a9d5a5.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" type="text/css" href="trix.css">
-    <script type="text/javascript" src="trix.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- <title>@yield('title', config('app.name'))</title> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
     <link rel="icon" type="image/png" sizes="32x32" href={{ asset('images/sportIcon.png') }} />
     <title>{{ isset($title) ? '' . $title . ' | ' . config('app.name') : config('app.name') }}</title>
-    
+
 </head>
 
 <body>
@@ -31,7 +32,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-
     </script>
+       <script rel="stylesheet" href="{{ asset('js/app.js') }}"></script>
+
 </body>
+
 </html>
