@@ -39,7 +39,8 @@ class CreateCommentsTable extends Migration
 
             $table->binary('guest_file')->nullable();
             $table->integer('product_rating');
-
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
 
         });
     }

@@ -7,7 +7,6 @@ if (isset($approved) and $approved == true) {
 @endphp
 
 
-
 @auth
     @include('comments::_form')
 @elseif(Config::get('comments.guest_commenting') == true)
@@ -22,7 +21,66 @@ if (isset($approved) and $approved == true) {
             <a href="{{ route('login') }}" class="btn btn-primary">@lang('comments::comments.log_in')</a>
         </div>
     </div>
+
 @endauth
+<form method="get" action="#">
+    <select name="sort" id="sort">
+        <option value="">Trier</option>
+        <option value="noteDesc">Note Desc</option>
+        <option value="noteAsc">Note Asc</option>
+        <option value="dateDesc">Date Desc</option>
+        <option value="dateAsc">Date Asc</option>
+    </select>
+</form>
+<script>
+    $("#sort").on('change', function(e) {
+        console.log('change');
+        let values = $(this).serialize();
+        let token = $('meta[name="csrf-token"]').attr('content');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': token
+            }
+        });
+        $.ajax({
+            url: '/product/{{ $product->id }}/sort/' + $('#sort').val(),
+            type: 'GET',
+            data: values,
+            success: function(data) {
+                $.each(data, function(key, value) {
+
+
+                    let commentContainer = $('#comment-' + (key + 1));
+                    commentContainer.html("");
+                    let contentDiv = $('<div></div>');
+                    contentDiv.html(
+                        "<img class = 'mr-3' src ='https://www.gravatar.com/avatar/'" +
+                        value.guest_email + ".jpg?s=64'alt =" + value.guest_name +
+                        " Avatar'><div class = 'media-body' ><h5 class = 'mt-0 mb-1'>" +
+                        value.guest_name + "<small class = 'text-muted' > -" + convertDate(value
+                        .created_at) +
+                        "</small></h5 ><div><div class='rating'><div class='star-icon'></div></div></div><div class='viewComment container col-12 col-sm-12 col-md-12 col-lg-12'>" +
+                        value.comment + "</div>");
+                    commentContainer.append(contentDiv);
+                })
+            },
+            error: function(e) {
+                console.log(e.responseText);
+            }
+        });
+    });
+
+    function convertDate(date) {
+        let convertDate = new Date(date);
+        let formatDate = convertDate.toISOString().split('T')[0];
+        let yearDate = formatDate.split('-')[0];
+        let monthDate = formatDate.split('-')[1];
+        let dayDate = formatDate.split('-')[2];
+        let newDate = yearDate + monthDate + dayDate;
+        return moment(newDate, "YYYYMMDD").fromNow();
+       
+    }
+</script>
 
 
 <div>

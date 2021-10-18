@@ -14,7 +14,7 @@
         });
 
         addEventListener("trix-file-accept", function(event) {
-            console.log(event.file);
+            console.log("trix-file-accept : "+event.file);
             if (! mimeTypes.includes(event.file.type) ) {
                 // file type not allowed, prevent default upload
                 return event.preventDefault();
@@ -22,6 +22,8 @@
         });
 
         addEventListener("trix-attachment-add", function(event){
+            console.log(event);
+            // console.log("trix-attachment-add : "+event.attachment);
             uploadTrixImage(event.attachment);
         });
 
@@ -32,7 +34,7 @@
                 'photos',
                 attachment.file,
                 function (uploadedURL) {
-
+                        console.log(uploadedURL);
                     // We need to create a custom event.
                     // This event will create a pause in thread execution until we get the Response URL from the Trix Component @completeUpload
                     const trixUploadCompletedEvent = `trix-upload-completed:${btoa(uploadedURL)}`;
@@ -49,7 +51,7 @@
                 function(event){
                     attachment.setUploadProgress(event.detail.progress);
                 },
-            )
+             )
             // complete the upload and get the actual file URL
         }
         

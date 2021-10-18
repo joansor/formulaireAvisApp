@@ -30,7 +30,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'comment', 'approved', 'guest_name', 'guest_email','guest_file','product_rating'
+        'comment', 'approved', 'guest_name', 'guest_email','guest_file','product_rating','commentable_id', 'product_id'
     ];
 
     /**
@@ -83,5 +83,10 @@ class Comment extends Model
     public function parent()
     {
         return $this->belongsTo(Config::get('comments.model'), 'child_id');
+    
+    }
+    public function comment_Produit(){
+
+        return $this->hasOne(Product::class,'id', 'product_id');
     }
 }

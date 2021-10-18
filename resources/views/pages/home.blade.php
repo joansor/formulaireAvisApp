@@ -12,9 +12,9 @@
                 @foreach ($products as $product)
                     <article class="produits">
                         <div class="cadreImg">
-                            <a href="{{ route('product.show', ['id' => $product->product_id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $product->picture }}" alt="{{ $product->name }}" /></a>
+                            <a href="{{ route('product.show', ['id' => $product->id ]) }}"><img class="poster" src="{{ asset('images/') }}/{{ $product->picture }}" alt="{{ $product->name }}" /></a>
                         </div>
-                        <a href="{{ route('product.show', ['id' => $product->product_id ]) }}">
+                        <a href="{{ route('product.show', ['id' => $product->id ]) }}">
                             <br>
                             <h3>{{ $product->name }}</h3>
                             <p class="price">{{ $product->price }},00€</p>

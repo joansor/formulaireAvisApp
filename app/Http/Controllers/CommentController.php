@@ -22,7 +22,9 @@ class CommentController extends Controller
         $this->middleware('web');
 
         if (Config::get('comments.guest_commenting') == true) {
-            $this->middleware('auth')->except('store');
+            $this->middleware('auth')->except('store','processingSort');
+
+
             $this->middleware(ProtectAgainstSpam::class)->only('store');
         } else {
             $this->middleware('auth');
@@ -34,16 +36,8 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-         // //dd($request->message);
-        $fileImg = null;
-        // If guest_file exist create encode image
-        if ($request->guest_file) {
-            $filetype = $request->file('guest_file')->getClientMimeType();
-            $file = $request->file('guest_file')->getPathname();
-            $fileImg = $this->base64_encode_image($file, $filetype);
-            dd($fileImg);
-        }
+
+        //dd($request);
 
         // If guest commenting is turned off, authorize this action.
         if (Config::get('comments.guest_commenting') == false) {
@@ -66,7 +60,7 @@ class CommentController extends Controller
         ]))->validate();
 
         $model = $request->commentable_type::findOrFail($request->commentable_id);
-        
+
 
         $commentClass = Config::get('comments.model');
         $comment = new $commentClass;
@@ -74,12 +68,8 @@ class CommentController extends Controller
         if (!Auth::check()) {
             $comment->guest_name = $request->guest_name;
             $comment->guest_email = $request->guest_email;
-             // if ($fileImg) {
-            //     $comment->guest_file = $fileImg;
-            // } else {
-            //     $comment->guest_file = null;
-            // }
             $comment->product_rating = $request->product_rating;
+            $comment->product_id = $request->product_id;
         } else {
             $comment->commenter()->associate(Auth::user());
         }
@@ -90,17 +80,6 @@ class CommentController extends Controller
         $comment->save();
 
         return Redirect::to(URL::previous() . '#comment-' . $comment->getKey());
-    }
-     /**
-      * Encode file img.
-      */
-    public function base64_encode_image($filename, $filetype)
-    {
-        
-        if ($filename) {
-            $imgbinary = fread(fopen($filename, "r"), filesize($filename)); // open & read file
-            return 'data:' . $filetype . ';base64,' . base64_encode($imgbinary); // path binary complet
-        }
     }
 
     /**
@@ -129,11 +108,10 @@ class CommentController extends Controller
         Gate::authorize('delete-comment', $comment);
 
         if (Config::get('comments.soft_deletes') == true) {
-			$comment->delete();
-		}
-		else {
-			$comment->forceDelete();
-		}
+            $comment->delete();
+        } else {
+            $comment->forceDelete();
+        }
 
         return Redirect::back();
     }
@@ -160,5 +138,42 @@ class CommentController extends Controller
 
         return Redirect::to(URL::previous() . '#comment-' . $reply->getKey());
     }
-}
+    /**
+     * Encode file img.
+     */
+    public static function base64_encode_image($filename, $filetype)
+    {
 
+        if ($filename) {
+            $imgbinary = fread(fopen($filename, "r"), filesize($filename)); // open & read file
+            return 'data:' . $filetype . ';base64,' . base64_encode($imgbinary); // path binary complet
+        }
+    }
+
+    /**
+     * Processing sort on table comments bdd
+     */
+    public function processingSort($id, $sort)
+    {
+        switch ($sort) {
+            case "noteAsc":
+                return  Comment::where('product_id', $id)->orderBy('product_rating', 'ASC')->get();
+                break;
+
+            case "noteDesc":
+                return  Comment::where('product_id', $id)->orderBy('product_rating', 'DESC')->get();
+                break;
+
+            case "dateDesc":
+                return   Comment::where('product_id', $id)->orderBy('created_at', 'DESC')->get();
+                break;
+
+            case "dateAsc":
+                return Comment::where('product_id', $id)->orderBy('created_at', 'ASC')->get();
+                break;
+            default:
+                return Comment::where('product_id', $id)->orderBy('created_at', 'DESC')->get();
+                break;
+        }
+    }
+}

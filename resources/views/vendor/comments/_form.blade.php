@@ -15,6 +15,7 @@
             @honeypot
             <input type="hidden" name="commentable_type" value="\{{ get_class($model) }}" />
             <input type="hidden" name="commentable_id" value="{{ $model->getKey() }}" />
+            <input type="hidden" name="product_id" value="{{ $product->id }}" />
 
             {{-- Guest commenting --}}
             @if(isset($guest_commenting) and $guest_commenting == true)
@@ -37,6 +38,7 @@
                     @enderror
                 </div>
             @endif
+            <br>
             <h5>@lang('comments::comments.note')</h5>
             <div class="form-group">
                 <div class="rating-css">
@@ -54,6 +56,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             {{-- <div class="form-group">
                 <label for="message">@lang('comments::comments.enter_your_message_here')</label>
                 <textarea class="form-control @if($errors->has('message')) is-invalid @endif" name="message" rows="3"></textarea>
@@ -66,6 +69,7 @@
                 @livewire('trix', ['value' => 'Awesome <strong>Sauce</strong>'])
                 @livewireScripts
             </div>
+            <br>
             <button type="submit" class="btn btn-sm btn-outline-success text-uppercase">@lang('comments::comments.submit')</button>
         </form>
     </div>
