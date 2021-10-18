@@ -13,7 +13,7 @@ $markdown->setSafeMode(true);
                 class="text-muted">- {{ $comment->created_at->diffForHumans() }}</small></h5>
         <div>
             <div class="rating">
-                <div class="star-icon">
+                <div class="star-icon {{ $comment->getKey() }}">
                     @switch($comment->product_rating)
                         @case(1)
                             <input type="radio" value="1" checked id="ratingStar1">
@@ -93,7 +93,9 @@ $markdown->setSafeMode(true);
         <div class="viewComment container col-12 col-sm-12 col-md-12 col-lg-12">
             {!! $comment->comment !!}
         </div>
+        <br>
     </div>
+ 
     {{-- <div style="white-space: pre-wrap;">{!! $markdown->line($comment->comment) !!}</div> --}}
     <div>
         @can('reply-to-comment', $comment)

@@ -48,8 +48,6 @@ if (isset($approved) and $approved == true) {
             data: values,
             success: function(data) {
                 $.each(data, function(key, value) {
-
-
                     let commentContainer = $('#comment-' + (key + 1));
                     commentContainer.html("");
                     let contentDiv = $('<div></div>');
@@ -57,10 +55,8 @@ if (isset($approved) and $approved == true) {
                         "<img class = 'mr-3' src ='https://www.gravatar.com/avatar/'" +
                         value.guest_email + ".jpg?s=64'alt =" + value.guest_name +
                         " Avatar'><div class = 'media-body' ><h5 class = 'mt-0 mb-1'>" +
-                        value.guest_name + "<small class = 'text-muted' > -" + convertDate(value
-                        .created_at) +
-                        "</small></h5 ><div><div class='rating'><div class='star-icon'></div></div></div><div class='viewComment container col-12 col-sm-12 col-md-12 col-lg-12'>" +
-                        value.comment + "</div>");
+                        value.guest_name + "<small class = 'text-muted' > -" +
+                        convertDate(value.created_at) +"</small></h5 ><div><div class='rating'>"+processingStarRating(value.product_rating, (key+1))+"</div><div class='viewComment container col-12 col-sm-12 col-md-12 col-lg-12'>" + value.comment + "</div><br>");
                     commentContainer.append(contentDiv);
                 })
             },
@@ -70,6 +66,50 @@ if (isset($approved) and $approved == true) {
         });
     });
 
+    function processingStarRating(value, key) {
+        console.log(value);
+        let divStarIcon = $("<div/>").attr('class','star-icon '+key);
+        // let divStarIcon = $("<div class='star-icon '"+key+"></div>");
+       
+        switch (value) {
+            case (1):
+                 divStarIcon.html(
+                    "<input type='radio' value='1' checked id='ratingStar1'><label for='ratingStar1' class='fa fa-star'></label><input type='radio' value='2' id='ratingStar2'><label for='ratingStar2' class='fa fa-star'></label><input  type='radio' value='3' id='ratingStar3'><label for='ratingStar3' class='fa fa-star'></label><input type='radio' value='4' id='ratingStar4'><label for='ratingStar4' class='fa fa-star'></label><input type='radio' value='5' id='ratingStar5'><label for='ratingStar5' class='fa fa-star'></label>"
+                    );
+                    return divStarIcon[0].innerHTML;
+                break;
+            case (2):
+                 divStarIcon.html(
+                    "<input type='radio' value='1' id='ratingStar1'><label for='ratingStar1' class='fa fa-star'></label><input type='radio' value='2'checked id='ratingStar2'><label for='ratingStar2' class='fa fa-star'></label><input  type='radio' value='3' id='ratingStar3'><label for='ratingStar3' class='fa fa-star'></label><input type='radio' value='4' id='ratingStar4'><label for='ratingStar4' class='fa fa-star'></label><input type='radio' value='5' id='ratingStar5'><label for='ratingStar5' class='fa fa-star'></label>"
+                    );
+                    return divStarIcon[0].innerHTML;
+                break;
+            case (3):
+                 divStarIcon.html(
+                    "<input type='radio' value='1' id='ratingStar1'><label for='ratingStar1' class='fa fa-star'></label><input type='radio' value='2' id='ratingStar2'><label for='ratingStar2' class='fa fa-star'></label><input type='radio' value='3' checked id='ratingStar3'><label for='ratingStar3' class='fa fa-star'></label><input type='radio' value='4' id='ratingStar4'><label for='ratingStar4' class='fa fa-star'></label><input type='radio' value='5' id='ratingStar5'><label for='ratingStar5' class='fa fa-star'></label>"
+                    );
+                    return divStarIcon[0].innerHTML;
+                break;
+            case (4):
+                  divStarIcon.html(
+                    "<input type='radio' value='1' id='ratingStar1'><label for='ratingStar1' class='fa fa-star'></label><input type='radio' value='2' id='ratingStar2'><label for='ratingStar2' class='fa fa-star'></label><input type='radio' value='3' id='ratingStar3'><label for='ratingStar3' class='fa fa-star'></label><input type='radio' value='4' checked id='ratingStar4'><label for='ratingStar4' class='fa fa-star'></label><input type='radio' value='5' id='ratingStar5'><label for='ratingStar5' class='fa fa-star'></label>"
+                    );
+                    return divStarIcon[0].innerHTML;
+                break;
+            case (5):
+                 divStarIcon.html(
+                    "<input type='radio' value='1' id='ratingStar1'><label for='ratingStar1' class='fa fa-star'></label><input type='radio' value='2' id='ratingStar2'><label for='ratingStar2' class='fa fa-star'></label><input type='radio' value='3' id='ratingStar3'><label for='ratingStar3' class='fa fa-star'></label><input type='radio' value='4' id='ratingStar4'><label for='ratingStar4' class='fa fa-star'></label><input type='radio' value='5' checked id='ratingStar5'><label for='ratingStar5' class='fa fa-star'></label>"
+                    );
+                    return divStarIcon[0].innerHTML;
+                break;
+            default:
+                 divStarIcon.html(
+                    "<input type='radio' value='1' id='ratingStar1'><label for='ratingStar1' class='fa fa-star'></label><input type='radio' value='2' id='ratingStar2'><label for='ratingStar2' class='fa fa-star'></label><input type='radio' value='3' checked id='ratingStar3'><label for='ratingStar3' class='fa fa-star'></label><input type='radio' value='4' id='ratingStar4'><label for='ratingStar4' class='fa fa-star'></label><input type='radio' value='5' id='ratingStar5'><label for='ratingStar5' class='fa fa-star'></label>"
+                    );
+                    return divStarIcon[0].innerHTML;
+        }
+    }
+
     function convertDate(date) {
         let convertDate = new Date(date);
         let formatDate = convertDate.toISOString().split('T')[0];
@@ -78,11 +118,8 @@ if (isset($approved) and $approved == true) {
         let dayDate = formatDate.split('-')[2];
         let newDate = yearDate + monthDate + dayDate;
         return moment(newDate, "YYYYMMDD").fromNow();
-       
     }
 </script>
-
-
 <div>
     <br>
     <h5>@lang('comments::comments.avis_client')</h5>
